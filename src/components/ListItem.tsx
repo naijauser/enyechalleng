@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -85,23 +85,25 @@ interface ListData {
 interface ListProp {
   listData?: ListData;
   coordinates?: {
-    hLat?: number,
-    hLong?: number,
+    latitude?: number,
+    longitude?: number,
   }
 }
 
 export const ListItem = (data: ListProp ) => {
+  const [ dist, setDistance ] = useState<number>(0);
+
   const classes = useStyles();
 
   let distance = 0
 
   useEffect(() => {
     
-    const hospitalLat = data?.listData?.geometry?.location?.lng;
-    const hospitalLong = data?.listData?.geometry?.location?.lng;
+    const hospitalLat = data?.listData?.geometry?.location?.lat;
+    const hospitalLong = data?.listData?.geometry?.location?.lng;    
 
-    const userLat = data.coordinates?.hLat;
-    const userLong = data.coordinates?.hLong;
+    const userLat = data.coordinates?.longitude;
+    const userLong = data.coordinates?.longitude;
 
     distance = getDistance(
       {
@@ -116,6 +118,7 @@ export const ListItem = (data: ListProp ) => {
 
     distance = parseInt((distance/1000).toFixed(2));
 
+    setDistance(distance)
   })
 
   return (
@@ -147,7 +150,7 @@ export const ListItem = (data: ListProp ) => {
         <div className={classes.details}>
           <DirectionsIcon className={classes.direc} />
           <Typography className={classes.pos} color="textSecondary">
-            { distance } kilometers away.
+            { dist } kilometers away.
           </Typography>
         </div>
 

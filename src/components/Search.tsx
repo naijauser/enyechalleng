@@ -217,6 +217,7 @@ export const Search: FC = () => {
                 <ListItem key={ `${Math.random().toString(36).substring(2, 15) + 
                         Math.random().toString(36).substring(2, 15)}` } 
                         listData={ item } 
+                        coordinates={ coord }
                 />)
 
             default: 

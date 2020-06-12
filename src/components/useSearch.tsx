@@ -30,7 +30,7 @@ export function useSearch<T> (initParam: string, searchRadius: number, initData:
 
       const query = initParam.replace(' ', '+')
 
-      const URI = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&location=${userCoordinates.longitude},${userCoordinates.longitude}&radius=${searchRadius*1000}type=hospital,health&key=${API_KEY}`;
+      const URI = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&location=${userCoordinates.longitude},${userCoordinates.latitude}&radius=${searchRadius*1000}type=hospital,health&key=${API_KEY}`;
       
       const prom = search(URI);
 

@@ -16,7 +16,7 @@ interface Data <P = {}>{
 
 export function useSearch<T> (initParam: string, searchRadius: number, initData: Data): [ Data, React.Dispatch<T>] {
   const [ placeData, setPlaceData ] = useState<Data>(initData);
-  const API_KEY = 'AIzaSyAroiUfOgYwg5TvFMH0SpmeAz_WWaoiUXk';
+  const API_KEY = '';
 
 
   const getLocationData = () => {
